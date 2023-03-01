@@ -1,32 +1,46 @@
 <template>
     <div class="login">
-        <h2 class="log">Вход</h2>
+        <h2>Авторизация</h2>
         <v-form>
             <v-text-field
-                v-model="username" 
+                v-model="form.username"
                 label="Логин"
                 placeholder="Almatulus"
                 variant="outlined"
                 clearable
                 hint="Введите правильный логин для входа"
                 class="mt-10 "
-                
+                maxLength="150"
+                :error-messages="usernameErrors"
+                @input="v$.form.username.$touch()"
+                @blur="v$.form.username.$touch()"
             ></v-text-field>
+            <!-- <p>{{usernameErrors}}</p> -->
             <v-text-field
-                v-model="password" 
+                v-model="form.password"
                 label="Пароль"
                 placeholder="Пароль"
                 variant="outlined"
                 clearable
                 hint="Введите правильный пароль для входа"
                 class="mt-4"
+                maxLength="150"
+                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                :type="showPassword ? 'text' : 'password'"
+                @click:append="showPassword = !showPassword"
             ></v-text-field>
+            <template v-for="error in errors" :key="error">
+                <p class="invalid-feedback">{{error}}</p>
+            </template>
             <div class="d-flex justify-end">
-                <router-link to="/clients">
-                <v-btn @click.prevent="submitHandler()" color="primary" class="mt-4 justify center" >
+                <v-btn
+                type="submit"
+                color="primary"
+                class="mt-4"
+                @click.prevent="SubmitHandler()"
+                >
                     Войти
                 </v-btn>
-                </router-link>
             </div>
         </v-form>
     </div>
@@ -34,29 +48,62 @@
 
 <script>
 import axios from 'axios'
-
+import { BASE_URL } from '../../helpers/instance'
+import useValidate from '@vuelidate/core'
+import { required } from '@vuelidate/validators'
 export default {
     data: () => ({
-        username: '',
-        password: '',
+        v$: useValidate(),
         showPassword: false,
-        error: ''
+        form: {
+            username: '',
+            password: ''
+        },
+        errors: []
     }),
+    computed:{
+        usernameErrors () {
+            const errors = []
+            if (!this.v$.form.username.$dirty) return errors
+            !this.v$.form.username.required && errors.push('Данное поле обязательно для заполнения')
+            return errors
+        },
+        passwordErrors(){
+            const errors = []
+            if (!this.v$.form.password.$dirty) return errors
+            !this.v$.password.required && errors.push('Данное поле обязательно для заполнения')
+            return errors
+        }
+    },
+    validations:{
+        
+            form: {
+                username: {required},
+                password: {required}
+            }
+        },
     methods:{
-        submitHandler(){
-                axios.post(`/auth/token/login/`,
-                {
-                    username:this.username,
-                    password: this.password
-                }).then((response) => {
-                    localStorage.setItem('Token', response.data.auth_token)
-                    console.log(localStorage.getItem('Token'))
+        SubmitHandler(){
+            this.v$.$touch()
+            if(!this.v$.$error){
+                axios.post(`${BASE_URL}/auth/token/login/`,{
+                    username: this.form.username,
+                    password: this.form.password
                 })
-                
+                .then((response) => {
+                    console.log(response.data)
+                })
+                .catch((error) => {
+                    if(error.response.data.non_field_errors){
+                        for(let i in error.response.data.non_field_errors){
+                            this.errors.push(error.response.data.non_field_errors[i])
+                        }
+                    }
+                })
+            }
             
         }
     }
-
     
 }
 </script>

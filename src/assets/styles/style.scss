@@ -6,9 +6,6 @@ h2{
     text-decoration: underline;
     font-size:x-large;
 }
-.margin-top{
-
-}
 
 .v-field--active{
     color: $brand-color;
@@ -16,9 +13,8 @@ h2{
 
 .button{
     background: $brand-color;
-
 }
-.search{
-    border-radius:30%;
-    color: aqua;
+
+.invalid-feedback{
+    color: red;
 }
