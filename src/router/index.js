@@ -12,6 +12,12 @@ const routes = [
     name: 'login',
     component: () => import('@/views/Login/Login.vue'),
     meta: {layout: 'auth'}
+  },
+  {
+    path: '/clients',
+    name: 'clients',
+    component: () => import('@/views/Clients/Clients.vue'),
+    meta: {layout: 'main'}
   }
   
 ]

@@ -1,15 +1,70 @@
+body{
+    font-size: $main-font-size;
+    color: $main-font-color;
+    background: #FAFAFA;
+}
+
 h2{
     text-decoration: underline;
 }
 
+a{
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+//Окрашивание текста цветом бренда
+.text-brand-color{
+    color: $brand-color;
+}
+
+//Цвет инпутов
 .v-field--active{
     color: $brand-color;
 }
 
+//Цвет кнопок
 .button{
     background: $brand-color;
 }
 
 .invalid-feedback{
     color: red;
+}
+
+.invalid-input{
+    color: red
+}
+
+tr{
+    text-align: center;
+}
+
+.table-head-bottom-border{
+    border-bottom: none;
+}
+
+th{
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    border-bottom: none!important;
+    color: $main-font-color;
+}
+
+td{
+    border-bottom: none!important;
+    color: $main-font-color;
+}
+
+.v-field{
+    border-radius: 30px!important;
+    padding: 0 30px;
+}
+
+.v-badge{
+    .v-badge__badge{
+        background: $brand-color !important;
+    }
 }
