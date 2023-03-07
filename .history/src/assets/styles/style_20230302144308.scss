@@ -1,0 +1,28 @@
+body{
+    font-family: 'Titillium Web';
+    font-size: 16px;
+}
+h2{
+   
+    font-size: 48px;
+}
+
+.v-field--active{
+    color: $brand-color;
+}
+
+.button{
+    background: $brand-color;
+}
+.v-text-field{
+    border-radius: $text-field-border-radius;
+}
+.vna{
+    margin-top: 35px;
+    margin-left: 10px;
+    font-size: 1.05rem ;
+}
+
+.invalid-feedback{
+    color: red;
+}

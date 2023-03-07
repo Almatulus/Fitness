@@ -1,0 +1,36 @@
+<template>
+  <v-app> 
+    <v-main>
+      <!-- <AuthLayout /> -->
+      <MainLayout/>
+      <router-view/>
+    </v-main>
+  </v-app>
+</template>
+
+<script>
+import AuthLayout from '@/layouts/AuthLayout.vue'
+import MainLayout from '@/layouts/MainLayout.vue'
+export default {
+  name: 'App',
+  data: () => ({
+
+  }),
+  
+//
+
+  computed: {
+    layout(){
+      return (this.$route.meta.layout || 'main') + '-layout'
+    }
+  },
+  components: {
+      AuthLayout,
+      MainLayout
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+   
+</style>
