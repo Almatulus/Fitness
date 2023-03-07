@@ -1,5 +1,15 @@
 <template>
     <div class="clients">
+      <v-overlay
+        :model-value="loader"
+        class="align-center justify-center"
+      >
+        <v-progress-circular
+          color="primary"
+          indeterminate
+          size="64"
+        ></v-progress-circular>
+      </v-overlay>
         <v-container>
             <div class="clients__inner">
                 <v-row>
@@ -12,8 +22,9 @@
                         append-inner-icon="mdi-magnify"
                         single-line
                         hide-details
-                        @click:append-inner="onClick"
+                        
                         ></v-text-field>
+                        <!-- @click:append-inner="onClick" -->
                     </v-col>
                 </v-row>
                 <v-row>
@@ -33,9 +44,9 @@
                                 <th class="text-center table-head-bottom-border">
                                     Абонемент
                                 </th>
-                                <th class="text-center table-head-bottom-border">
+                                <!-- <th class="text-center table-head-bottom-border">
                                     Дата завершения
-                                </th>
+                                </th> -->
                                 <th class="text-center table-head-bottom-border">
                                     Дата последнего посещения
                                 </th>
@@ -43,23 +54,28 @@
                             </thead>
                             <tbody>
                             <tr
-                                v-for="item in desserts"
-                                :key="item.name"
+                                v-for="item in clientList"
+                                :key="item.id"
                             >
                                 <td>
-                                  <v-avatar color="surface-variant"></v-avatar>
+                                  <v-avatar color="surface-variant">
+                                    <v-img
+                                      :src="item.image"
+                                      alt="user"
+                                    ></v-img>
+                                  </v-avatar>
                                 </td>
                                 <td>
                                   <a href="">
-                                    <router-link to="">
-                                      Ержигит Кайратов
+                                    <router-link :to="{name: 'client', params: {id: item.id}}">
+                                      {{item.user}}
                                     </router-link>
                                   </a>
                                 </td>
-                                <td>87674335698</td>
-                                <td>Optimal Feb</td>
-                                <td>22/04/2022</td>
-                                <td>22/04/2022</td>
+                                <td>{{item.phone}}</td>
+                                <td>{{item.subscription}}</td>
+                                <td>{{}}</td>
+                                <td>{{item.last_attendance}}</td>
                             </tr>
                             </tbody>
                         </v-table>
@@ -107,116 +123,42 @@
 
 
 <script>
+import axios from 'axios'
+import { BASE_URL } from '../../helpers/instance'
   export default {
-    data () {
-      return {
-        options: {
-          pageCount: 1,
-        },
-        page: 1,
-        itemsPerPage: 5,
-        headers: [
-          {
-            align: 'start',
-            key: 'name',
-            sortable: false,
-            title: 'Dessert (100g serving)',
-          },
-          { title: 'Calories', key: 'calories' },
-          { title: 'Fat (g)', key: 'fat' },
-          { title: 'Carbs (g)', key: 'carbs' },
-          { title: 'Protein (g)', key: 'protein' },
-          { title: 'Iron (%)', key: 'iron' },
-        ],
-        desserts: [
-          {
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-            iron: 1,
-          },
-          {
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-            iron: 1,
-          },
-          {
-            name: 'Eclair',
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-            iron: 7,
-          },
-          {
-            name: 'Cupcake',
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
-            iron: 8,
-          },
-          {
-            name: 'Gingerbread',
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
-            iron: 16,
-          },
-          {
-            name: 'Jelly bean',
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
-            iron: 0,
-          },
-          {
-            name: 'Lollipop',
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
-            iron: 2,
-          },
-          {
-            name: 'Honeycomb',
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-            protein: 6.5,
-            iron: 45,
-          },
-          {
-            name: 'Donut',
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
-            iron: 22,
-          },
-          {
-            name: 'KitKat',
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
-            iron: 6,
-          },
-        ],
+    data: () => ({
+      loader: true,
+      clientList: []
+    }),
+    methods:{
+      async getClientsList(){
+        this.loader = true
+        axios.get(`${BASE_URL}/api/clients/list/`,
+        {
+          headers:{
+            Authorization: 'Token ' + sessionStorage.getItem('usertoken')
+          }
+        })
+        .then((response)=>{
+          console.log(response.data)
+          this.clientList = response.data
+          this.loader = false
+        })
       }
     },
+    mounted(){
+      this.getClientsList()
+    }
   }
 </script>
 
 <style lang="scss" scoped>
 .clients{
     padding: 20px 0;
+}
+
+.v-field{
+    border-radius: 30px!important;
+    padding: 0 30px;
 }
 </style>

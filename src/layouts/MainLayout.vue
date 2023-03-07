@@ -9,8 +9,12 @@
           <v-divider></v-divider>
   
           <v-list density="compact"  nav>
-            <v-list-item prepend-icon="mdi mdi-account" title="Клиенты" value="clients"></v-list-item>
-            <v-list-item prepend-icon="" title="Тренеры" value="shared"></v-list-item>
+            <router-link to="/clients">
+              <v-list-item prepend-icon="mdi mdi-account" title="Клиенты" value="clients"></v-list-item>
+            </router-link>
+            <router-link to="/coaches">
+              <v-list-item prepend-icon="mdi-dumbbell" title="Тренеры" value="shared"></v-list-item>
+            </router-link>
             <v-list-item prepend-icon="mdi-account-multiple" title="Групповые занятия" value="starred"></v-list-item>
             <v-list-item prepend-icon="mdi-star" title="Абонименты" value="starred"></v-list-item>
             <v-list-item prepend-icon="mdi mdi-bookmark-box-multiple" title="Отчеты" value="starred"></v-list-item>
@@ -19,7 +23,7 @@
   
         <v-app-bar>
             <a class="ml-5" href="">
-              <router-link to="">
+              <router-link to="/clients/add">
                 Добавить клиента
               </router-link>
             </a>
@@ -34,6 +38,9 @@
                 <v-icon>mdi-bell</v-icon>
               </v-badge>
             </v-btn>
+            <v-btn @click.prevent="logout()">
+              Выйти
+            </v-btn>
         </v-app-bar>
         
         <v-main style="min-height: 300px;">
@@ -42,6 +49,29 @@
       </v-layout>
     
 </template>
+
+<script>
+import axios from 'axios'
+import { BASE_URL } from '../helpers/instance'
+export default {
+  methods:{
+    logout(){
+      axios.post(`${BASE_URL}/auth/token/logout/`,
+      {
+        
+      },
+      {
+        headers:{
+          Authorization: 'Token ' + sessionStorage.getItem('usertoken')
+        }
+      }).then((response)=>{
+        sessionStorage.clear()
+        this.$router.push('/login')
+      })
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
     .v-navigation-drawer{

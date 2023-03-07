@@ -90,7 +90,6 @@ export default {
                 .then((response) => {
                     sessionStorage.setItem('usertoken', response.data.auth_token);
                     this.$router.push('/clients')
-                    console.log(response.data)
                 })
                 .catch((error) => {
                     this.loader=false
