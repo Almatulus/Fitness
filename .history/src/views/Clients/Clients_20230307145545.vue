@@ -133,7 +133,7 @@ import { BASE_URL } from '../../helpers/instance'
     methods:{
       async getClientsList(){
         this.loader = true
-        axios.get(`${BASE_URL}/api/clients/list/`,
+        axios.get(`/api/clients/list/`,
         {
           headers:{
             Authorization: 'Token ' + sessionStorage.getItem('usertoken')

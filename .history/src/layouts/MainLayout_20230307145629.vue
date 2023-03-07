@@ -56,7 +56,7 @@ import { BASE_URL } from '../helpers/instance'
 export default {
   methods:{
     logout(){
-      axios.post(`${BASE_URL}/auth/token/logout/`,
+      axios.post(`}/auth/token/logout/`,
       {
         
       },
