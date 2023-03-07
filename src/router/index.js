@@ -24,16 +24,14 @@ const routes = [
     path: '/clients',
     name: 'clients',
     component: () => import('@/views/Clients/Clients.vue'),
-    meta: {layout: 'main'},
-    children:[
-      {
-        path: '/client/:id',
-        name: 'client',
-        params: true,
-        component: () => import('@/views/Clients/ClientView.vue'),
-        meta: {layout: 'main'}
-      }
-    ]
+    meta: {layout: 'main'}
+  },
+  {
+    path: '/clients/client/:id',
+    name: 'clients/client/id',
+    params: true,
+    component: () => import('@/views/Clients/ClientView.vue'),
+    meta: {layout: 'main'}
   },
   {
     path: '/coaches',

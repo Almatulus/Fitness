@@ -67,7 +67,7 @@
                                 </td>
                                 <td>
                                   <a href="">
-                                    <router-link :to="{name: 'client', params: {id: item.id}}">
+                                    <router-link :to="{name: 'clients/client/id', params: {id: item.id}}">
                                       {{item.user}}
                                     </router-link>
                                   </a>

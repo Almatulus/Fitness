@@ -8,7 +8,13 @@
                 <v-form>
                     <v-row>
                         <v-col cols="4">
-                            
+                            <v-file-input
+                                class="mt-9"
+                                label="Вставить фото"
+                                variant="solo"
+                                prepend-icon="mdi-camera"
+                                
+                            ></v-file-input>
                         </v-col>
                         <v-col class="mt-3" cols="8">
                             <v-row>
@@ -25,9 +31,9 @@
                                     label="Имя"
                                     variant="solo"></v-text-field>
 
-                                    <v-text-field
-                                    label="Дата рождение"
-                                    variant="solo"></v-text-field>
+                                    <input type="datetime-local" id="meeting-time"
+                                    name="meeting-time" value="2018-06-12T19:30"
+                                    min="2018-06-07T00:00" max="2018-06-14T00:00">
                                 </v-col>
                                 <v-col cols="6">
                                     <v-select
@@ -104,16 +110,22 @@
 
 <script>
 export default {
-    genderList: ['Мужской', 'Женский'],
-    form:{
-        secondName: '',
-        name: '',
-        birthDate: '',
-        gender: '',
-        email: '',
-        phone: ''
+    data: () => ({
+        genderList: ['Мужской', 'Женский'],
+        form:{
+            secondName: '',
+            name: '',
+            birthDate: '',
+            gender: '',
+            email: '',
+            phone: ''
+        },
+        date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+        menu: false,
+        modal: false,
+        menu2: false,
+        })
     }
-}
 </script>
 
 <style lang="scss" scoped>
