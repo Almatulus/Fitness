@@ -15,6 +15,7 @@
                 @change="resetErrors"
             ></v-text-field>
             <p class="invalid-feedback" v-if="v$.form.username.$dirty && v$.form.username.$error">Поле "Логин" должно быть заполнено</p>
+            
             <v-text-field
                 v-model="form.password"
                 label="Пароль"

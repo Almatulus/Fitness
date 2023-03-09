@@ -2,7 +2,7 @@
   <v-app>
     <v-main>
       <component :is="layout">
-        <router-view/>
+
       </component>
     </v-main>
   </v-app>

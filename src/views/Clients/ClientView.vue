@@ -37,18 +37,23 @@
                 </v-row>
                 <v-row>
                     <v-col cols="4">
-                        <p>Абонемент</p>
-                        <v-card>
-                            <h4>Unlimite</h4>
-                            <p>Подписка с трехмесячной платой</p>
+                        <p class="subtitle">Абонемент</p>
+                        <v-card class="mt-7">
+                            <h4 class="subtitle">Unlimite</h4>
+                            <p class="mt-3">Подписка с трехмесячной платой</p>
                             <v-list lines="one">
-                            <v-list-item
-                                v-for="item in items"
-                                :key="item.title"
-                                :title="item.title"
-                                subtitle="..."
-                            ></v-list-item>
+                                <v-list-item
+                                    v-for="item in items"
+                                    :key="item.title"
+                                    :title="item.title"
+                                    prepend-icon="mdi-check-bold"
+                                >
+                                
+                                </v-list-item>
                             </v-list>
+                            <div class="">
+
+                            </div>
                         </v-card>
                     </v-col>
                 </v-row>
@@ -56,3 +61,32 @@
         </v-container>
     </div>
 </template>
+
+<script>
+import axios from 'axios'
+import { BASE_URL } from '../../helpers/instance'
+import useValidate from '@vuelidate/core'
+import { required } from '@vuelidate/validators'
+export default {
+    setup () {
+        return { v$: useValidate() }
+    },
+    data: () => ({
+        items: [
+            {title: 'Мобильное приложение'},
+            {title: 'Расторжение в любой момент'},
+            {title: '4 гостевых визита в подарок'},
+        ]
+    }),
+    methods:{
+        
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+.v-card{
+    padding: 25px 30px;
+    
+}
+</style>
