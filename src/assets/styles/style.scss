@@ -86,3 +86,41 @@ td{
         background: $brand-color !important;
     }
 }
+
+.v-card{
+    padding: 30px 25px;
+    .v-card-title{
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 34px;
+        color: #333333;
+    }
+    .v-card-subtitle{
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+    }
+
+    .v-card__inner-text{
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    div{
+        font-size: 45px;
+    }
+}
+
+.active-card{
+    background-color: $brand-color;
+    .v-card-title{
+        color: #fff;
+    }
+    .v-card-subtitle{
+        color: #fff
+    }
+    div{
+        color:#FFF
+    }
+}

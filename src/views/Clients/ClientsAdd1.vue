@@ -247,7 +247,8 @@ export default {
                 this.loader=true
                 let formData = new FormData()
                 formData.append('file', this.form.file);
-                axios.post(`${BASE_URL}/api/clients/create/`,{
+                console.log(this.form)
+                axios.post(`${BASE_URL}/api/clients/`,{
                     credit_card: {
                         card_number: this.form.card.number,
                         name_on_card: this.form.card.name,

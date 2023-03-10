@@ -15,9 +15,15 @@ const routes = [
     meta: {layout: 'auth'}
   },
   {
-    path: '/clients/add',
-    name: 'clients/add',
-    component: () => import('@/views/Clients/ClientsAdd.vue'),
+    path: '/clients/add/1',
+    name: 'clients/add/1',
+    component: () => import('@/views/Clients/ClientsAdd1.vue'),
+    meta: {layout: 'main'}
+  },
+  {
+    path: '/clients/add/2',
+    name: 'clients/add/2',
+    component: () => import('@/views/Clients/ClientsAdd2.vue'),
     meta: {layout: 'main'}
   },
   {

@@ -1,5 +1,15 @@
 <template>
     <div class="client">
+        <v-overlay
+        :model-value="loader"
+        class="align-center justify-center"
+        >
+            <v-progress-circular
+            color="primary"
+            indeterminate
+            size="64"
+            ></v-progress-circular>
+        </v-overlay>
         <v-container>
             <div class="client__inner">
                 <v-row>
@@ -20,27 +30,29 @@
                         class="bg-white"
                         width="180"
                         :aspect-ratio="1"
-                        src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
+                        src=""
                         ></v-img>
                     </v-col>
                     <v-col>
                         <h3>
-                            Ержигит Кайратов
+                            {{clientInfo.name}}
                         </h3>
                         <p class="mt-4">
-                            +7 747 321 5643
+                            {{clientInfo.phone}}
                         </p>
                         <p class="mt-3">
-                            @example.ru
+                            {{clientInfo.email}}
                         </p>
+                        
                     </v-col>
                 </v-row>
+                
                 <v-row>
                     <v-col cols="4">
                         <p class="subtitle">Абонемент</p>
                         <v-card class="mt-7">
-                            <h4 class="subtitle">Unlimite</h4>
-                            <p class="mt-3">Подписка с трехмесячной платой</p>
+                            <h4 class="subtitle">{{subscription.title}}</h4>
+                            <p class="mt-3">{{subscription.description}}</p>
                             <v-list lines="one">
                                 <v-list-item
                                     v-for="item in items"
@@ -76,12 +88,28 @@ export default {
             {title: 'Мобильное приложение'},
             {title: 'Расторжение в любой момент'},
             {title: '4 гостевых визита в подарок'},
-        ]
+        ],
+        clientInfo: {},
+        subscription: {},
+        loader: true
     }),
     methods:{
-        async getClientInfo(){
-            
+        async getClientProfileInfo(){
+            axios.get(`${BASE_URL}/api/clients/${this.$route.params.id}/profile/`,{
+                headers:{
+                    Authorization: 'Token ' + sessionStorage.getItem('usertoken')
+                }
+            })
+            .then((response) => {
+                console.log(response.data)
+                this.clientInfo = response.data,
+                this.subscription = response.data.subscription
+                this.loader = false
+            })
         }
+    },
+    mounted(){
+        this.getClientProfileInfo()
     }
 }
 </script>

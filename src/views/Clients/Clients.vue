@@ -54,7 +54,7 @@
                             </thead>
                             <tbody>
                             <tr
-                                v-for="item in clientList.results"
+                                v-for="item in clientList"
                                 :key="item.id"
                             >
                                 <td>
@@ -76,7 +76,7 @@
                                 </td>
                                 <td>{{item.phone}}</td>
                                 <td>{{item.subscription}}</td>
-                                <td>{{}}</td>
+                                
                                 <td>{{item.last_attendance}}</td>
                             </tr>
                             </tbody>

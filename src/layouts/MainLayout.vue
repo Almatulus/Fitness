@@ -23,7 +23,7 @@
   
         <v-app-bar>
             <a class="ml-5" href="">
-              <router-link to="/clients/add">
+              <router-link to="/clients/add/1">
                 Добавить клиента
               </router-link>
             </a>
