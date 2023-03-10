@@ -54,16 +54,18 @@
                             </thead>
                             <tbody>
                             <tr
-                                v-for="item in clientList"
+                                v-for="item in clientList.results"
                                 :key="item.id"
                             >
                                 <td>
                                   <v-avatar color="surface-variant">
                                     <v-img
+                                      v-if="item.image != null"
                                       :src="item.image"
                                       alt="user"
                                     ></v-img>
                                   </v-avatar>
+                                  
                                 </td>
                                 <td>
                                   <a href="">

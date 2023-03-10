@@ -79,7 +79,9 @@ export default {
         ]
     }),
     methods:{
-        
+        async getClientInfo(){
+            
+        }
     }
 }
 </script>

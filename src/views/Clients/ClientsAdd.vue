@@ -107,7 +107,7 @@
                                     v-model="form.gender"
                                     :error-messages="v$.form.gender.$errors.map(e => e.$message)"  
                                     ></v-select>
-                                    {{form.gender}}
+                    
                                     <v-text-field
                                     label="Email"
                                     variant="solo"
@@ -182,7 +182,7 @@
                             <v-btn
                             @click.prevent="SubmitHandler()"
                             color="primary"
-                            class="mt-4"
+                            class="mt-4 mb-4"
                             :loading="loader"
                             :disabled="loader"
                             >
@@ -246,7 +246,7 @@ export default {
             if(!this.v$.$error){
                 this.loader=true
                 let formData = new FormData()
-                formData.append('file', this.file);
+                formData.append('file', this.form.file);
                 axios.post(`${BASE_URL}/api/clients/create/`,{
                     credit_card: {
                         card_number: this.form.card.number,
@@ -282,8 +282,16 @@ export default {
             }
         },
         handleFileUpload: function(file){
-            this.file = file;
+            this.form.file = file;
             this.error = ''
+        }
+    },
+    computed:{
+        usernameErrors () {
+            const errors = []
+            if (!this.v$.form.username.$dirty) return errors
+            !this.v$.form.username.required && errors.push('Данное поле обязательно для заполнения')
+            return errors
         }
     },
     validations(){
@@ -296,7 +304,7 @@ export default {
                 name: {required},
                 birthDate: {required},
                 gender: {required},
-                email: {required},
+                email: {required, email},
                 phone: {required}
             }
         }
