@@ -30,9 +30,9 @@
               <a v-if="$router.path === 'clients'"  href="/clients/add">
                 Добавить клиента
               </a>
-              <!-- <a v-else-if="$router.path === 'coaches'"  href="/coaches/add">
+              <a v-else-if="$router.path === 'coaches'"  href="/coaches/add">
                 Добавить тренера
-              </a> -->
+              </a>
 
            
             <v-spacer></v-spacer>
@@ -61,7 +61,6 @@
 <script>
 import axios from 'axios'
 import { BASE_URL } from '../helpers/instance'
-
 export default {
   methods:{
     logout(){
@@ -74,15 +73,10 @@ export default {
           Authorization: 'Token ' + sessionStorage.getItem('usertoken')
         }
       }).then((response)=>{
-                            
-        this.$router.push('/couches')
-
-        console.log($router)
-        console.log({router:this.$router}); 
+        sessionStorage.clear()
+        this.$router.push('/login')
         
-
       })
-  
     }
   }
 }

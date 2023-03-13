@@ -5,12 +5,7 @@
               <v-row><h3> Редактирование клиента</h3></v-row>
               <v-form>
                 <v-row>
-                   
-                    <v-col class="mt-5" cols="12" ></v-col>
-                    
-                    <v-row class="d-flex" >
-                      
-                        <v-col cols="2">
+                    <v-col cols="3">
                         <v-file-input class="mt-4"
                         :rules="rules"
                         label="Изменить фото"
@@ -21,8 +16,10 @@
                         ref="file"
                         v-on:change="handleFileUpload"></v-file-input>
                     </v-col>
-                        <v-spacer></v-spacer>
-                        <v-col cols="3">
+                    <v-col class="mt-3" cols="8" ></v-col>
+                    
+                    <v-row class="d-flex" >
+                        <v-col cols="6">
                             <p class="form-col-title">Личные данные</p>
                             <v-text-field
                             label="Логин"
@@ -53,9 +50,8 @@
                             :error-messages="v$.form.profession.$errors.map(e => e.$message)"></v-text-field>
                             </v-col>
 
-                            <v-col cols="3">
+                            <v-col cols="6">
 
-                                <p class="form-col-title"> f</p>
                             <v-text-field
                             label="Телефон"
                             variant="solo"

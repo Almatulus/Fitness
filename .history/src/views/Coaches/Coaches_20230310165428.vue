@@ -2,17 +2,11 @@
     <div class="coaches">
         <v-container>
             <div class="coaches__inner">
-              <v-row><h3> Редактирование клиента</h3></v-row>
+              <v-row> Редактирование клиента</v-row>
               <v-form>
                 <v-row>
-                   
-                    <v-col class="mt-5" cols="12" ></v-col>
-                    
-                    <v-row class="d-flex" >
-                      
-                        <v-col cols="2">
-                        <v-file-input class="mt-4"
-                        :rules="rules"
+                    <v-col cols="4">
+                        <v-file-input class="mt-9"
                         label="Изменить фото"
                         variant="solo"
                         prepend-icon="mdi-camera"
@@ -21,9 +15,12 @@
                         ref="file"
                         v-on:change="handleFileUpload"></v-file-input>
                     </v-col>
-                        <v-spacer></v-spacer>
-                        <v-col cols="3">
-                            <p class="form-col-title">Личные данные</p>
+                    <v-col class="mt-3" cols="8" ></v-col>
+                    <v-row>
+                        <p class="form-col-title">Личные данные</p>
+                    </v-row>
+                    <v-row class="d-flex" >
+                        <v-col cols="6">
                             <v-text-field
                             label="Логин"
                             variant="solo"
@@ -35,8 +32,8 @@
                             label="Фамилия"
                             variant="solo"
                             clearable
-                            v-model="form.surNametr"
-                            :error-messages="v$.form.surNametr.$errors.map(e => e.$message)"></v-text-field>
+                            v-model="form.secondNametr"
+                            :error-messages="v$.form.secondNametr.$errors.map(e => e.$message)"></v-text-field>
 
                             <v-text-field 
                             label="Имя"
@@ -53,9 +50,8 @@
                             :error-messages="v$.form.profession.$errors.map(e => e.$message)"></v-text-field>
                             </v-col>
 
-                            <v-col cols="3">
+                            <v-col cols="6">
 
-                                <p class="form-col-title"> f</p>
                             <v-text-field
                             label="Телефон"
                             variant="solo"
@@ -79,19 +75,16 @@
                             :error-messages="v$.form.price.$errors.map(e => e.$message)"  ></v-text-field>
 
                         </v-col>
-                       
-                       
-                        </v-row>
-                        
-                </v-row>
-                <v-col cols="12" height="">
+                        <v-col cols="12">
                             <v-text-field
                             label="О тренере"
                             variant="solo"
                             clearable
-
-                            v-model="form.about"  ></v-text-field>
-                        </v-col> 
+                            v-model="form.year"  ></v-text-field>
+                        </v-col>
+                        </v-row>
+                        
+                </v-row>
                 <v-row>
                         <v-col cols="6">
                             <div class="">
@@ -141,17 +134,6 @@
                                 ></v-text-field>
                             </div>
                         </v-col>
-                        <div style="width: 100%" class="d-flex justify-end">
-                            <v-btn
-                            @click.prevent="SubmitHandler()"
-                            color="primary"
-                            class="mt-4 mb-4"
-                            :loading="loader"
-                            :disabled="loader"
-                            >
-                                Сохранить
-                            </v-btn>
-                        </div>
                     </v-row>
               </v-form>
             </div>
@@ -169,22 +151,17 @@ export default {
     setup () {
         return { v$: useValidate() }
     },
-    data: () => ({ 
-        rules: [
-        value => {
-          return !value || !value.length || value[0].size < 2000000 || 'Avatar size should be less than 2 MB!'
-        },
-      ],
+    data: () => ({
+       
         form:{
             file: '',
             usernametr: '',
-            surNametr: '',
+            secondNametr: '',
             nametr: '',
             profession: '',
             year: '',
             price: '',
             phonetr: '',
-            about: '',
             instagram: '',
             facebook: '',
             card: {
@@ -200,7 +177,7 @@ export default {
         async SubmitHandler(){  
             this.v$.$touch()
             if(!this.v$.$error){
-               
+                this.loader=true
                 let formData = new FormData()
                 formData.append('file', this.file);
                 axios.post(`${BASE_URL}/api/coaches/`,{
@@ -212,12 +189,11 @@ export default {
                     user: {
                         username: this.form.usernametr,
                         first_name: this.form.nametr,
-                        last_name: this.form.surNametr,
+                        last_name: this.form.secondNametr,
                         phone: this.form.phonetr,
                         profession: this.form.profession,
                         year: this.form.year,
                         price: this.form.price,
-                        about: this.form.about,
                         is_client: true
                     }
                 },
@@ -227,12 +203,12 @@ export default {
                     }
                 })
                 .then((response) => {
-                   
+                    this.loader=false
                     this.dialog=true
                     console.log(response.data)
                 })
                 .catch((error) => {
-                   
+                    this.loader=false
                     console.log(error.data)
                 })
             }
@@ -246,13 +222,12 @@ export default {
         return {
             form:{
                 usernametr: {required},
-                surNametr: {required},
+                secondNametr: {required},
                 nametr: {required},
                 profession: {required},
                 year: {required},
                 price: {required},
-                phonetr: {required},
-                about: {required}
+                phonetr: {required}
             }
         }
     }

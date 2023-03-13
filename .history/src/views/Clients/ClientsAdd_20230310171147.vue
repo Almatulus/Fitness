@@ -121,6 +121,7 @@
                                     variant="solo"
                                     clearable
                                     v-model="form.phone"
+                                    v-maska data-maska="#-#"
                                     :error-messages="v$.form.phone.$errors.map(e => e.$message)"  
                                     ></v-text-field>
                                     
@@ -200,7 +201,7 @@ import axios from 'axios'
 import { BASE_URL } from '../../helpers/instance'
 import useValidate from '@vuelidate/core'
 import { required, email } from '@vuelidate/validators'
-
+import { vMaska } from "maska"
 export default {
     setup () {
         return { v$: useValidate() }
@@ -299,7 +300,8 @@ export default {
                 phone: {required}
             }
         }
-    }
+    },
+    directives: { maska: vMaska }
 }
 </script>
 

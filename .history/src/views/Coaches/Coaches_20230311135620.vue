@@ -55,7 +55,6 @@
 
                             <v-col cols="3">
 
-                                <p class="form-col-title"> f</p>
                             <v-text-field
                             label="Телефон"
                             variant="solo"

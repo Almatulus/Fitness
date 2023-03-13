@@ -9,8 +9,8 @@
                     <v-col class="mt-5" cols="12" ></v-col>
                     
                     <v-row class="d-flex" >
-                      
-                        <v-col cols="2">
+                        <p class="form-col-title">Личные данные</p>
+                        <v-col cols="3">
                         <v-file-input class="mt-4"
                         :rules="rules"
                         label="Изменить фото"
@@ -21,9 +21,9 @@
                         ref="file"
                         v-on:change="handleFileUpload"></v-file-input>
                     </v-col>
-                        <v-spacer></v-spacer>
+                        
                         <v-col cols="3">
-                            <p class="form-col-title">Личные данные</p>
+                            
                             <v-text-field
                             label="Логин"
                             variant="solo"
@@ -55,7 +55,6 @@
 
                             <v-col cols="3">
 
-                                <p class="form-col-title"> f</p>
                             <v-text-field
                             label="Телефон"
                             variant="solo"

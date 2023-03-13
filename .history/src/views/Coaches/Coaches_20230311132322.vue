@@ -5,12 +5,7 @@
               <v-row><h3> Редактирование клиента</h3></v-row>
               <v-form>
                 <v-row>
-                   
-                    <v-col class="mt-5" cols="12" ></v-col>
-                    
-                    <v-row class="d-flex" >
-                      
-                        <v-col cols="2">
+                    <v-col cols="3">
                         <v-file-input class="mt-4"
                         :rules="rules"
                         label="Изменить фото"
@@ -21,9 +16,20 @@
                         ref="file"
                         v-on:change="handleFileUpload"></v-file-input>
                     </v-col>
-                        <v-spacer></v-spacer>
-                        <v-col cols="3">
-                            <p class="form-col-title">Личные данные</p>
+                    <v-col class="mt-3" cols="8" ></v-col>
+                    
+                    <v-row class="d-flex" >
+                        <p class="form-col-title">Личные данные</p>
+                        <v-col cols="4">
+                            <v-file-input class="mt-4"
+                        :rules="rules"
+                        label="Изменить фото"
+                        variant="solo"
+                        prepend-icon="mdi-camera"
+                        accept="image/png, image/gif, image/jpeg"
+                        id="file"
+                        ref="file"
+                        v-on:change="handleFileUpload"></v-file-input>
                             <v-text-field
                             label="Логин"
                             variant="solo"
@@ -53,9 +59,8 @@
                             :error-messages="v$.form.profession.$errors.map(e => e.$message)"></v-text-field>
                             </v-col>
 
-                            <v-col cols="3">
+                            <v-col cols="4">
 
-                                <p class="form-col-title"> f</p>
                             <v-text-field
                             label="Телефон"
                             variant="solo"
