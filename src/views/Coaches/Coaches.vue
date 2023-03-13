@@ -5,6 +5,7 @@
               <v-row><h3> Редактирование клиента</h3></v-row>
               <v-form>
                 <v-row>
+
                    
                     <v-col class="mt-5" cols="12" ></v-col>
                     
@@ -20,6 +21,7 @@
                         id="file"
                         ref="file"
                         v-on:change="handleFileUpload"></v-file-input>
+
                     </v-col>
                         <v-spacer></v-spacer>
                         <v-col cols="3">

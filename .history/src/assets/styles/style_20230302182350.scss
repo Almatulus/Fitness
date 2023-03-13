@@ -1,0 +1,40 @@
+body{
+    font-family: 'Titillium Web';
+    font-size: 16px;
+}
+h2{
+   
+    font-size: 34px;
+}
+
+.v-field--active{
+    color: $brand-color;
+}
+
+.button{
+    background: $brand-color;
+}
+.v-text-field{
+    border-radius: $text-field-border-radius;
+}
+.vna{
+    margin-top: 35px;
+    margin-left: 10px;
+    font-size: 1.05rem ;
+}
+title{
+    color: #6E64E7;
+    font-size: large;
+    size: 30px;
+}
+p{
+    color: #6E64E7;
+}
+.v-list-item{
+    color: #6E64E7;
+
+}
+
+.invalid-feedback{
+    color: red;
+}

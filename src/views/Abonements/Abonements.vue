@@ -2,6 +2,7 @@
     <div class="abonements">
        <div class="abonements__inner">
              
+
         <v-col cols="11">
                         <v-text-field
                         :loading="loading"
@@ -99,10 +100,10 @@
               </div>
             </div>
           </v-card>
+
         </v-col>
    
        
-
         <v-col class="d-flex 
         justify-space-evenly" >
         
@@ -243,6 +244,7 @@
  <script>
   export default {
     data: () => ({
+
       active1: false,
       active2: false,
       active3: false,
@@ -259,6 +261,7 @@
       include () {
         return [document.querySelector('.included')]
       },
+
     },
   }
 </script>
@@ -269,6 +272,7 @@
     // width: 1560px;
     width: 100%;
     margin: 100%;
+
     margin-top: 34px;
     margin-left: 1.5%; 
     margin-right: 50px;
@@ -286,5 +290,6 @@
     width: 282px;
     height: 0.5px;
    
+
  }
  </style>
