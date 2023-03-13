@@ -1,0 +1,97 @@
+body{
+    font-size: $main-font-size;
+    color: $main-font-color;
+    background: #FAFAFA;
+}
+
+h2{
+    text-decoration: underline;
+}
+
+h3{
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+
+    color: #333333;
+}
+h4{
+    position: absolute;
+width: 70px;
+height: 34px;
+left: 396px;
+top: 274px;
+
+font-family: 'Gilroy';
+font-style: normal;
+font-weight: 700;
+font-size: 28px;
+line-height: 34px;
+
+}
+
+
+a{
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+//Окрашивание текста цветом бренда
+.text-brand-color{
+    color: $brand-color;
+}
+
+//Цвет инпутов
+.v-field--active{
+    color: $brand-color;
+}
+
+//Цвет кнопок
+.button{
+    background: $brand-color;
+}
+
+.form-col-title{
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #333333;
+}
+
+.invalid-feedback{
+    color: red;
+}
+
+.invalid-input{
+    color: red
+}
+
+tr{
+    text-align: center;
+}
+
+.table-head-bottom-border{
+    border-bottom: none;
+}
+
+th{
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    border-bottom: none!important;
+    color: $main-font-color;
+}
+
+td{
+    border-bottom: none!important;
+    color: $main-font-color;
+}
+
+
+
+.v-badge{
+    .v-badge__badge{
+        background: $brand-color !important;
+    }
+}

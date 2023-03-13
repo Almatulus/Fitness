@@ -44,6 +44,24 @@ const routes = [
     component: () => import('@/views/Coaches/Coaches.vue'),
     meta: {layout: 'main'}
   },
+  {
+    path: '/abonements',
+    name: 'abonements',
+    component: () => import('@/views/Abonements/Abonements.vue'),
+    meta: {layout: 'main'}
+  },
+  {
+    path: '/reports',
+    name: 'reports',
+    component: () => import('@/views/Reports.vue'),
+    meta: {layout: 'main'}
+  },
+  {
+    path: '/coachesadd',
+    name: 'coachesadd',
+    component: () => import('@/views/Coaches/CoachesAdd.vue'),
+    meta: {layout: 'main'}
+  },
   
 ]
 
